@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Ghost is a written or spoken word game in which players take turns adding letters to a growing word fragment, trying not to be the one to complete a valid word.">
+    <meta name="author" content="Matt Miermans">
+
+    <title>Ghost Game</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div>
+        <h1>Ghost Game</h1>
+        <p class="lead">In the game of <a href="http://en.wikipedia.org/wiki/Ghost_(game)">Ghost</a>, two players take turns building up an English word from left to right. Each player adds one letter per turn. The goal is to not complete the spelling of a word: if you add a letter that completes a word (of 4+ letters), or if you add a letter that produces a string that cannot be extended into a word, you lose.</p>
+      </div>
+
+      <div id="player-controls"></div>
+      
+      <div id="word-container">
+        <h1 id="word">&nbsp</h1>
+      </div>
+
+      <div id="message" class="well">
+        Loading...
+      </div>
+
+    </div><!-- /.container -->
+
+    <!-- Underscore templates
+    ================================================== -->
+    <script type="text/template" class="player-controls-template">
+      <div class="btn-group">
+        <div id="restart" class="btn btn-warning">Restart game</div>
+        <% _.each(alphabet, function(c) { %>
+            <button data-letter="<%- c %>" type="button" class="letter btn btn-default"><%- c %></button>
+        <% }); %>
+      </div>
+    </script>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script data-main="js/app" src="js/lib/require.js"></script>
+  </body>
+</html>
+
+
