@@ -20,11 +20,13 @@ define(["jquery","underscore","bootstrap","app/ghostengine"], function($,_,Boots
     i++;
   }
 
-  $("#message").text("Waiting for player to choose first letter.");
+  $("#message").text("Waiting for player to choose the first letter.");
 
   // game state
   var state = {
     prefix: "",
+    aiWins: 0,
+    humanWins: 0,
   };
 
   // Player makes move
@@ -36,6 +38,7 @@ define(["jquery","underscore","bootstrap","app/ghostengine"], function($,_,Boots
 
     if (GhostEngine.isValidMove(state.prefix) == false) {
       // Game over
+      state.aiWins++;
       if (GhostEngine.dictionary.indexOf(state.prefix) > 0) {
         $("#message").text("Player has lost! \"" + state.prefix + "\" is a dictionary word.");
       } else {
@@ -48,21 +51,24 @@ define(["jquery","underscore","bootstrap","app/ghostengine"], function($,_,Boots
       
       // Test whether AI ran out of moves.
       if (GhostEngine.dictionary.indexOf(state.prefix) > 0) {
+        state.humanWins++;
         $("#message").text("AI has lost! \"" + state.prefix + "\" is a dictionary word.");
         $(".letter").prop('disabled', true);
       } else {
-        $("#message").text("Waiting for player to choose next letter.");
+        $("#message").text("Waiting for player to choose the next letter.");
       }
 
       $("#word").text(state.prefix);
     }
+
+    $("#score").text("HUMAN " + state.humanWins + " - " + state.aiWins + " AI");
   });
 
   // Player restarts game
   $("#restart").on("click", function() {
     state.prefix = "";
     $("#word").html("&nbsp");
-    $("#message").text("Waiting for player to choose first letter.");
+    $("#message").text("Waiting for player to choose the first letter.");
     $(".letter").prop('disabled', false);
   });
 
