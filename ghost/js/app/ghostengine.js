@@ -61,6 +61,10 @@ define(["app/dictionary"], function(Dictionary) {
       console.log("Tree built");
     },
 
+    isLongWord: function(word) {
+      return (word.length >= this.minWordLength && this.dictionary.indexOf(word) >= 0);
+    },
+
     // Returns true if prefix is not a word.
     isValidMove: function(prefix) {
       var node = this.wordTree;

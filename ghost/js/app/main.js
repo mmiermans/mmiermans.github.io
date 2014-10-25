@@ -32,6 +32,7 @@ define(["jquery","underscore","bootstrap","app/ghostengine"], function($,_,Boots
   // Player makes move
   $(".letter").on("click", function(ev) {
     $("#message").text("AI is thinking...");
+    $(".letter").removeClass("btn-success");
     var letter = $(ev.target).data('letter');
     state.prefix += letter;
     $("#word").text(state.prefix);
@@ -39,18 +40,18 @@ define(["jquery","underscore","bootstrap","app/ghostengine"], function($,_,Boots
     if (GhostEngine.isValidMove(state.prefix) == false) {
       // Game over
       state.aiWins++;
-      if (GhostEngine.dictionary.indexOf(state.prefix) > 0) {
+      if (GhostEngine.isLongWord(state.prefix)) {
         $("#message").text("Player has lost! \"" + state.prefix + "\" is a dictionary word.");
       } else {
         $("#message").text("Player has lost! No word begins with \"" + state.prefix + "\".");
       }
-      $(".letter").prop('disabled', true);
+      $(".letter, #hint").prop('disabled', true);
     } else {
       var aiMove = GhostEngine.solve(state.prefix, false);
       state.prefix += aiMove;
       
       // Test whether AI ran out of moves.
-      if (GhostEngine.dictionary.indexOf(state.prefix) > 0) {
+      if (GhostEngine.isLongWord(state.prefix)) {
         state.humanWins++;
         $("#message").text("AI has lost! \"" + state.prefix + "\" is a dictionary word.");
         $(".letter").prop('disabled', true);
@@ -61,7 +62,7 @@ define(["jquery","underscore","bootstrap","app/ghostengine"], function($,_,Boots
       $("#word").text(state.prefix);
     }
 
-    $("#score").text("HUMAN " + state.humanWins + " - " + state.aiWins + " AI");
+    $("#score").text("HUMAN " + state.humanWins + " - " + state.aiWins + " A.I.");
   });
 
   // Player restarts game
@@ -69,7 +70,13 @@ define(["jquery","underscore","bootstrap","app/ghostengine"], function($,_,Boots
     state.prefix = "";
     $("#word").html("&nbsp");
     $("#message").text("Waiting for player to choose the first letter.");
-    $(".letter").prop('disabled', false);
+    $(".letter, #hint").prop('disabled', false);
+  });
+
+  // Give hint
+  $("#hint").on("click", function() {
+    var aiHint = GhostEngine.solve(state.prefix, true);
+    $(".letter[data-letter='" + aiHint + "']").addClass("btn-success");
   });
 
   GhostEngine.isValidMove('aa');

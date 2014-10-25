@@ -22,7 +22,7 @@
           <p class="lead">In the game of <a href="http://en.wikipedia.org/wiki/Ghost_(game)">Ghost</a>, two players take turns building up an English word from left to right. Each player adds one letter per turn. The goal is to not complete the spelling of a word: if you add a letter that completes a word (of 4+ letters), or if you add a letter that produces a string that cannot be extended into a word, you lose.</p>
         </div>
 
-        <p id="score" style="font-size: 5em">HUMAN 0 - 0 AI</p>
+        <p id="score" style="font-size: 5em">HUMAN 0 - 0 A.I.</p>
 
         <div id="player-controls"></div>
         
@@ -42,6 +42,7 @@
     <script type="text/template" class="player-controls-template">
       <div class="btn-group btn-group-lg">
         <div id="restart" class="btn btn-warning">Restart game</div>
+        <div id="hint" class="btn btn-primary">Hint</div>
         <% _.each(alphabet, function(c) { %>
             <button data-letter="<%- c %>" type="button" class="letter btn btn-default"><%- c %></button>
         <% }); %>
