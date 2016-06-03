@@ -1,0 +1,66 @@
+.section {
+  border-bottom: 1px solid rgb(238, 238, 238);
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+#event-timepicker {
+  max-width: 188px;
+  margin: 0 auto;
+  min-height: 237px;
+}
+
+#event-timepicker .timepicker-hour,
+#event-timepicker .timepicker-minute {
+  font-size: 40px;
+}
+
+
+/*** event ***/
+.time-text {
+  display: block;
+  min-width: 60px;
+  float: left;
+}
+
+.title-text {
+  margin-right: 20px;
+}
+
+.description-text {
+  font-style: italic;
+}
+
+
+/*** event list ***/
+ul.event-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  outline: none;
+  cursor: pointer;
+}
+
+ul.event-list li {
+  margin: 10px 0;
+  padding: 10px;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #F7F7F7), color-stop(100%, #E8E8E8));
+  background: -webkit-linear-gradient(#F7F7F7, #E8E8E8);
+  background:    -moz-linear-gradient(#F7F7F7, #E8E8E8);
+  background:      -o-linear-gradient(#F7F7F7, #E8E8E8);
+  background:         linear-gradient(#F7F7F7, #E8E8E8);
+  border: 1px solid #C9C9C9;
+  background: #F0F0F0;
+  border-radius: 4px;   /* may need vendor varients */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.14);   /* may need vendor varients */
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+ul.event-list li.selected {
+  border: 1px solid #2659D9;
+  color: #FFF;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.8);
+  background: #678BE4;
+}
+
